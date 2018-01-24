@@ -1,4 +1,4 @@
-# Multi-Agent-Alternating-Turn-Board-and-Card-Games
+# Multi Agent Alternating Turn Board and Card Games
 
 
 ## Authors
