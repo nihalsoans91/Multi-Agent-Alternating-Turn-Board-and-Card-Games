@@ -19,8 +19,8 @@ class Qlearn:
             self.qdict = {}
             json.dump(self.qdict, open(self.qfilename, 'w'))
         
-        self.pfilename = 'dictionary/policy_' + str(player) + '.txt'
-        if os.path.isfile(self.qfilename):
+        self.pfilename = 'dictionary/qPolicy_' + str(player) + '.txt'
+        if os.path.isfile(self.pfilename):
             self.policy = json.load(open(self.pfilename,'r'))
         else:
             self.policy = {}
@@ -134,7 +134,7 @@ class Qlearn:
         else:
             while True:
                 action = random.choice(hand)
-                print("Random Action: ",action)
+                #print("Random Action: ",action)
                 reward = 0
                 if action.split()[0] == "Jack":
                     continue
@@ -143,7 +143,7 @@ class Qlearn:
                     break
         location = ''
         card = list(arPair.keys())[list(arPair.values()).index(max(arPair.values()))]
-        print(card)
+        #print(card)
         if str(card).split()[0] == "Jack":
             location = cardLocations[pydealer.Card(str(virtualCard).split()[0],str(virtualCard).split()[2])]
             self.learn(state, virtualCard)
@@ -194,7 +194,7 @@ class Qlearn:
                 a = str(list(cardLocations.keys())[list(cardLocations.values()).index(str(random.choice(cl)))])
                 r = 0
             acts["Jack of Diamonds"] = [a,r]
-        print(acts)
+        #print(acts)
         action = list(acts.keys())[list(acts.values()).index([a for i, a in enumerate(acts.values()) if a[1] == max(rew[1] for rew in acts.values())][0])]
         return action, acts[action][0], acts[action][1]
     

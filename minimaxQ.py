@@ -16,7 +16,7 @@ class miniMAX:
             self.mqdict = {}
             json.dump(self.mqdict, open(self.qfilename, 'w'))
         
-        self.pfilename = 'dictionary/mqpolicy_' + str(player) + '.txt'
+        self.pfilename = 'dictionary/mqPolicy_' + str(player) + '.txt'
         if os.path.isfile(self.pfilename):
             self.mqpolicy = json.load(open(self.pfilename,'r'))
         else:
@@ -39,7 +39,7 @@ class miniMAX:
         else:
             while True:
                 action = random.choice(hand)
-                print("Random Action: ",action)
+                #print("Random Action: ",action)
                 reward = 0
                 if action.split()[0] == "Jack":
                     continue
@@ -48,7 +48,7 @@ class miniMAX:
                     break
         location = ''
         card = list(arPair.keys())[list(arPair.values()).index(max(arPair.values()))]
-        print(card)
+        #print(card)
         if str(card).split()[0] == "Jack":
             location = cardLocations[pydealer.Card(str(virtualCard).split()[0],str(virtualCard).split()[2])]
             self.learn(state, virtualCard)
@@ -100,7 +100,7 @@ class miniMAX:
                 a = str(list(cardLocations.keys())[list(cardLocations.values()).index(str(random.choice(cl)))])
                 r = 0
             acts["Jack of Diamonds"] = [a,r]
-        print(acts)
+        #print(acts)
         action = list(acts.keys())[list(acts.values()).index([a for i, a in enumerate(acts.values()) if a[1] == max(rew[1] for rew in acts.values())][0])]
         return action, acts[action][0], acts[action][1]
     
@@ -227,7 +227,7 @@ class miniMAX:
         spstate = simpleSequence(squares)
         availableMoves = state.split('-')[1].split(',') #spstate.available_moves()
         v=-1
-        #print(availableMoves)
+        ##print(availableMoves)
         for move in availableMoves:
             location = self.findCardLocation(move)
             if location == -1:
@@ -241,8 +241,8 @@ class miniMAX:
                     v=val
                     maximove=move
                 
-##        print(availableMoves)
-##        print(v)
+##        #print(availableMoves)
+##        #print(v)
         return v
     
     def findmax(self,spstate,player,level,move):
@@ -262,13 +262,13 @@ class miniMAX:
         vmin=1000
         card = ""
         tempBoard = [i for i in spstate.board_string()]
-        #print("temp:",temp) 
+        ##print("temp:",temp) 
         for i in range(len(tempBoard)):
-            #print("temp[i]",temp[i])
+            ##print("temp[i]",temp[i])
             if tempBoard[i] == '_' and i not in [40,49]:
                 card = list(cardLocations.keys())[list(cardLocations.values()).index(str(i))]
                 v = get_reward(tempBoard, card, player)
-                print("v ",v)
+                #print("v ",v)
                 if(v < vmin):
                     vmin = v
                     cmin = card
