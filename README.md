@@ -11,7 +11,7 @@ Board-and-card games are those which involve higher level of uncertainty as it i
 
 ## Python Packages Used
 * **PyGame** - To visualise the simulated gameplay
-* **PyCard** - To implement a deck of cards used during game play
+* **PyDealer** - To implement a deck of cards used during game play
 
 ## Prject Files:
 * **Game.py** - Main Run File. Simulate game between players.
